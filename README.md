@@ -1,6 +1,6 @@
 # FrontEnd
 
-##What to do with this repository:
+## What to do with this repository:
 <ol>
 <li>Clone it</li>
 <li>run "npm install"</li>
