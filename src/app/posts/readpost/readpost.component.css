@@ -1,0 +1,75 @@
+.card {
+    width: 40rem; 
+    margin: auto; 
+    margin-top: 2rem; 
+    max-height: 30rem;
+    overflow-y: scroll; 
+    background-color: #474C55;
+    color: #f5f5f5;
+}
+
+#filterbtn {
+  width: 180px;
+  margin: 20px;
+}
+
+ #location {
+  width:200px;
+  margin: 10px;
+} 
+
+/* #locationoption {
+  color: white;
+} */ 
+
+  
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  #filterButton{
+    border-color: #F26925;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    position: absolute;
+    top: 55px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #main {
+    transition: margin-left .5s;
+    padding: 20px;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  
+  @media only screen and (max-width: 800px) {
+    .card {
+      width: 80%;
+    }
+  }
+
+  #createPost{
+    color:white; 
+    background-color: #F26925;
+}

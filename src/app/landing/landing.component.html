@@ -1,0 +1,98 @@
+<div class="container mt-5 text-white">
+  <div class="row">
+    <div class="col-12">
+      <div class="jumbotron"  style="background-color: #474C55;">
+        <h1 class="text-center">Revature Community</h1>
+        <p class="text-center">Connect with your fellow associates!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container text-white mb-5">
+  <div class="row p-3 rounded" style="background-color: #474C55;">
+    <div class="text-center col-md-6 col-12">
+      <h3>Already have an account?</h3>
+      
+      <a class="btn text-white btn-lg" href="#loginModal" role="button" data-toggle="modal" style="background-color: #F26925;">Login</a>
+    </div>
+    <div class="text-center col-md-6 col-12">
+      <h3>Need to sign up?</h3>
+    
+      <a class="btn text-white btn-lg" href="#registerModal" data-toggle='modal' role="button" style="background-color: #FCB414;">Register</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div id="loginModal" class="modal fade">
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Member Login</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form #form="ngForm" ngNativeValidate action="app/topnav" method="post">
+          <div class="form-group">
+            <input type="email" [(ngModel)]='username' class="form-control" name="email" placeholder="Email"
+            required />
+          </div>
+          <div class="form-group">
+            <input type="password" [(ngModel)]='password' class="form-control" name="password" placeholder="Password"
+            required />
+          </div>
+          <div class="form-group">
+            <button (click)=validateUser() type="submit"
+              class="btn text-white btn-lg btn-block login-btn" style="background-color: #72A4C2;">Login</button>
+            <div id="close-modal" data-dismiss="modal"></div>
+          </div>
+          <div class="modal-footer">{{loginError}}</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="registerModal" class="modal fade">
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Register</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form #form="ngForm" ngNativeValidate action="app/topnav" method="post">
+          <div class="form-group">
+            <input type="username" [(ngModel)]='username' class="form-control" name="username" placeholder="Username"
+              required />
+          </div>
+          <div class="form-group">
+            <input type="email" [(ngModel)]='email' class="form-control" name="email" placeholder="Email"
+            required />
+          </div>
+          <div class="form-group">
+            <input type="password" [(ngModel)]='password' class="form-control" name="password" placeholder="Password"
+            required />
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]='firstName' class="form-control" name="firstName" placeholder="First Name"
+            required />
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]='lastName' class="form-control" name="lastName" placeholder="Last Name"
+            required />
+          </div>
+          <div class="form-group">
+            <button  type="submit" [disabled]="!email || !password || !firstName || !lastName || !username" (click)=createUser()
+              class="btn text-white btn-lg btn-block login-btn" style="background-color: #72A4C2;" data-dismiss="modal">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

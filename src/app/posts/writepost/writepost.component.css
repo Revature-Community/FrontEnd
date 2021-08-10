@@ -1,0 +1,161 @@
+.revature {
+  background-color: #474c55;
+  color: white;
+  font-family: fortuna, sans-serif;
+  margin: auto;
+  padding: 10px;
+  
+}
+
+
+#post-container{
+  width: 30rem;
+  margin: auto;
+}
+
+#select-city {
+  height: 35px;
+  margin-left: 10px;
+  border-radius: 4px;
+  width: 34%;
+}
+
+#select-city:required:invalid, #category:required:invalid, #location:required:invalid {
+  color: gray;
+}
+#select-city>option[value=""][disabled], #category>option[value=""][disabled], #location>option[value="0"][disabled] {
+  display: none;
+}
+
+#create-city{
+  width: 34%;
+  border-radius: 4px;
+  border: none;
+  height: 35px;
+  padding: 14px;
+}
+
+.p-input {
+  height: 35px;
+}
+
+.p-text {
+  height: 5rem;
+  resize: none;
+}
+
+.post-cancel {
+  background-color: #B9B9BA;
+  width: 45%;
+}
+
+.post-submit {
+  background-color: #F26925;
+  width: 45%;
+  margin-right: 2.5rem;
+}
+
+#category {
+  width: 49%;
+  height: 35px;
+}
+
+#sel{
+  display: flex;
+  height: 35px;
+  margin: 10px 0 20px 0;
+}
+
+#location{
+  width: 49%;
+  margin-right: 10px;
+}
+
+#new-loc {
+  padding: 0;
+  background-color: #72A4C2;
+  color: black;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#create-city-container {
+  padding-bottom: 10px;
+}
+
+.hidden {
+  display: none!important;
+}
+
+.show {
+  display: block!important;
+}
+
+.new-loc-btn {
+  border: 1px solid white;
+  display: inline-block;
+  margin: 10px 0 10px 10px;
+  border-radius: 3px;
+  padding: 0 10px 0 10px;
+}
+
+#create-post-container {
+  text-align: center;
+  margin: auto;
+  width: 40rem;
+  padding: 20px;
+  border-radius: 10px;
+  background-color:#474C55;
+}
+
+.modal-content{
+  border: none;
+}
+
+.modal-body {
+  width: 40rem;
+  background-color: #474c55;
+  color: white;
+  font-family: fortuna, sans-serif;
+  margin: auto;
+  padding: 10px;
+}
+
+#create-post {
+  width: 80%;
+  height: 50px;
+  padding: 10px;
+}
+
+#create-post:hover{
+  cursor: pointer;
+}
+
+.username {
+  color: #fff;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #FCB414;
+  margin-right: 10px;
+  display: inline-block;
+  height: 45px;
+  width: 45px;
+  font-weight: 700;
+}
+.username>div {
+  position: relative;
+  bottom: auto;
+}
+
+.orange{ 
+  color: #f26925;
+}
+
+@media only screen and (max-width: 800px) {
+  .card {
+    width: 80%;
+  }
+  #create-post-container{
+    width: 80%;
+  }
+}

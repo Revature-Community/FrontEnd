@@ -1,0 +1,170 @@
+<!-- <span id="filterspan" (click)="openNav()" style="color: white;">
+  <button (click)="getData()" id="filterbtn"
+            class="btn btn-dark"> Filter</button></span> -->
+<div id="mySidenav" class="sidenav nav" style=" background-color: #72A4C2;">
+    <!-- <a href="javascript:void(0)" class="closebtn" (click)="closeNav()" id="closebtn">&times;</a> -->
+
+    <!-- <a href="#" class="ml-1 text-white">Location</a> -->
+    <div class="btn-group">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown1" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Category</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+
+            <a href="#" class="button">All</a>
+            <a (click)="listHousingPosts('Housing')" class="button">Housing</a>
+            <a (click)="listEntertainmentPosts('Entertainment')" class="button">Entertainment</a>
+            <a (click)="listFoodPosts('Food')" class="button">Food</a>
+            <a (click)="listEventPosts('Events')" class="button">Events</a>
+
+        </div>
+    </div>
+    <div class="btn-group">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown2" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Location</a>
+        <div [(ngModel)]="this.locationForPosts" class="dropdown-menu"
+            aria-labelledby="navbarDropdown2">
+            <button class="text-secondary btn my-2 my-sm-0" (click)="filterByLocation(0)" style="font-size: 25px;">All</button>
+            <button class="text-secondary btn my-2 my-sm-0" (click)="filterByLocation(loc.id)" style="font-size: 25px; " *ngFor="let loc of locationdata">{{loc.city}}, {{loc.state}}</button>
+        </div>
+    </div>
+</div>
+
+<div class="col">
+
+
+    <app-writepost id="writepost" (newItemEvent)="updatePosts($event)"></app-writepost>
+
+    <div [ngSwitch]=view>
+        <div *ngSwitchCase="'all'">
+            <div *ngFor="let post of postList.slice().reverse()" style="color: black;">
+                <div class="card p-4">
+                    <div class="" style="text-align: left; height: 15rem; display: flex; flex-direction: column;">
+                        <div style="border-bottom: 1px solid white;">
+                            <h3 class="card-title">{{post.title}}</h3>
+                            <div>
+                                <p class="card-subtitle mr-auto">posted by: {{post.username}}</p>
+
+                                <p class="card-subtitle">{{post.categoryType}}</p>
+                                <p class="card-subtitle mb-2">{{post.locationId.city}}, {{post.locationId.state}}
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div style="height: 100%; flex: 1;">
+                            <div style="padding: 10px 0 10px 0">{{post.content}}</div>
+                            <div style="border-top: 1px solid white;">
+                                <app-reponse [postId]=post.id></app-reponse>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'Food'">
+            <div *ngFor="let post of foodPosts" style="color: black;">
+                <div class="card p-4">
+                    <div class="" style="text-align: left;">
+                        <div style="border-bottom: 1px solid white;">
+                            <h3 class="card-title">{{post.title}}</h3>
+                            <div>
+                                <p class="card-subtitle  mr-auto">posted by: {{post.username}}</p>
+
+                            </div>
+                            <p class="card-subtitle">{{post.categoryType}}</p>
+                            <p class="card-subtitle mb-2">{{post.locationId.city}}, {{post.locationId.state}}
+                            </p>
+                        </div>
+                    </div>
+                    <div style=" border-bottom: 1px solid white;" class="p-2">
+                        <p>{{post.content}}</p>
+
+                    </div>
+                    <app-reponse [postId]=post.id></app-reponse>
+                </div>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'Housing'">
+            <div *ngFor="let post of housingPosts" style="color: black;">
+                <div class="card p-4">
+                    <div class="" style="text-align: left;">
+                        <div style="border-bottom: 1px solid white;">
+                            <h3 class="card-title">{{post.title}}</h3>
+                            <div>
+                                <p class="card-subtitle  mr-auto">posted by: {{post.username}}</p>
+
+                            </div>
+                            <p class="card-subtitle">{{post.categoryType}}</p>
+                            <p class="card-subtitle mb-2">{{post.locationId.city}}, {{post.locationId.state}}
+                            </p>
+                        </div>
+                    </div>
+                    <div style=" border-bottom: 1px solid white;" class="p-2">
+                        <p>{{post.content}}</p>
+
+                    </div>
+                    <app-reponse [postId]=post.id></app-reponse>
+                </div>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'Events'">
+            <div *ngFor="let post of eventPosts" style="color: black;">
+                <div class="card p-4">
+                    <div class="" style="text-align: left;">
+                        <div style="border-bottom: 1px solid white;">
+                            <h3 class="card-title">{{post.title}}</h3>
+                            <div>
+                                <p class="card-subtitle  mr-auto">posted by: {{post.username}}</p>
+
+                            </div>
+                            <p class="card-subtitle">{{post.categoryType}}</p>
+                            <p class="card-subtitle mb-2">{{post.locationId.city}}, {{post.locationId.state}}
+                            </p>
+                        </div>
+                    </div>
+                    <div style=" border-bottom: 1px solid white;" class="p-2">
+                        <p>{{post.content}}</p>
+
+                    </div>
+                    <app-reponse [postId]=post.id></app-reponse>
+                </div>
+
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'Entertainment'">
+            <div *ngFor="let post of entertainmentPosts" style="color: black;">
+                <div class="card p-4">
+                    <div class="" style="text-align: left;">
+                        <div style="border-bottom: 1px solid white;">
+                            <h3 class="card-title">{{post.title}}</h3>
+                            <div>
+                                <p class="card-subtitle  mr-auto">posted by: {{post.username}}</p>
+
+                            </div>
+                            <p class="card-subtitle">{{post.categoryType}}</p>
+                            <p class="card-subtitle mb-2">{{post.locationId.city}}, {{post.locationId.state}}
+                            </p>
+                        </div>
+                    </div>
+                    <div style=" border-bottom: 1px solid white;" class="p-2">
+                        <p>{{post.content}}</p>
+
+                    </div>
+                    <app-reponse [postId]=post.id></app-reponse>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Little problem is that when I  try to filter the posts by one thing i.e. Food, 
+     and filter by something else, I cannot filter by food again unless refreshing 
+     Hopefully we will figure a solution soon! -->

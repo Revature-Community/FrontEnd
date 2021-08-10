@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="bar" style="background-color: #474C55;">
+    <!-- Resizing will be necessary just here to get things up-->
+    <a class="navbar-brand" href="/community"><img src="../assets/images/rev-logo.png" height="30px"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            
+            
+          
+        </ul>
+        <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn my-2 my-sm-0" type="submit" id="searchButton">Search</button>
+        </form> -->
+        <a><button class="text-white btn my-2 my-sm-0" (click)="logout()">Logout</button></a>
+    </div>
+</nav>
+
+<!-- Modal HTML -->
+<div class="modal fade" id="modal">
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            <div class="modal-header">			
+                <h4 class="modal-title">Member Login</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="app/topnav" method="post">
+                    <div class="form-group">
+                        <input type="username" class="form-control" name="username" placeholder="Username" required="required">		
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Password" required="required">	
+                    </div>        
+                    <div class="form-group">
+                        <button (click) = validateUser() type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+</div>     
+
+<!-- Got to look into where these files are stored online -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- <script
+    src="file:///C|/Users/Goob/AppData/Roaming/Adobe/Dreamweaver 2020/en_US/Configuration/Temp/Assets/eamBB76.tmp/js/jquery-3.3.1.min.js"></script> -->
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- <script
+    src="file:///C|/Users/Goob/AppData/Roaming/Adobe/Dreamweaver 2020/en_US/Configuration/Temp/Assets/eamBB76.tmp/js/popper.min.js"></script>
+<script
+    src="file:///C|/Users/Goob/AppData/Roaming/Adobe/Dreamweaver 2020/en_US/Configuration/Temp/Assets/eamBB76.tmp/js/bootstrap-4.3.1.js"></script> -->

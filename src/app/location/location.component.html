@@ -1,0 +1,27 @@
+<div class="revature" [ngSwitch]="allLocations">
+  <div *ngSwitchCase="'all'">
+    <label for="locs">Choose a location:</label>
+    <select name="locs" id="locs">
+      <option *ngFor="let loc of locationdata" [value]="loc.id">
+        {{ loc.location }}
+      </option>
+    </select>
+    <button class="btn revature" (click)="switch()">New Location</button>
+  </div>
+  <div *ngSwitchCase="'create'">
+    <input
+      style="width: 30%"
+      [(ngModel)]="city"
+      placeholder="Enter Your City"
+    />
+    <select [(ngModel)]="state">
+      <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+    </select>
+    <button class="btn revature" (click)="addLocation()" type="submit">
+      Add
+    </button>
+    <button class="btn revature" (click)="switch()">All Locations</button>
+  </div>
+</div>
+
+<app-geocoding></app-geocoding>
