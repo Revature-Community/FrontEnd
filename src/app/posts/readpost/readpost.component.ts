@@ -141,4 +141,11 @@ export class ReadpostComponent implements OnInit {
   handleShowPost() {
     this.showCreatePost = this.showCreatePost === 'false' ? 'true' : 'false';
   }
+  upvotePost():void {
+    console.log("Hello :)")
+  }
+
+  downvotePost():void {
+    console.log("Goodbye :(")
+  }
 }

@@ -7,7 +7,7 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UpvotesService {
-  baseUrl = 'http://ec2-35-175-212-202.compute-1.amazonaws.com:9095/upvote/'
+  baseUrl = 'http://localhost:8085/upvote/'
   constructor(private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({

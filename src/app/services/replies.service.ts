@@ -8,7 +8,7 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class RepliesService {
   
-  baseUrl = 'http://ec2-35-175-212-202.compute-1.amazonaws.com:9095/responses/';
+  baseUrl = 'http://localhost:8085/responses/';
   constructor(private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
@@ -58,5 +58,6 @@ export class RepliesService {
       catchError(this.errorHandler)
     )
   }
+
 
 }
