@@ -20,10 +20,19 @@ export class LandingComponent implements OnInit {
   constructor(private landingService: LandingService, private router:Router) { }
 
   ngOnInit(): void {
+    //make request to backend with
+    /*if the browser's local storage has a key named "isLoggedIn" and it's value is true, send them to the /community page
+     *
+    */
     if (localStorage.getItem("isLoggedIn") == "true"){
-      this.router.navigate(['/community']);
+      //add method to validate that the user is actually logged in and did not simply change the values in localstorage
+      if(this.checkStatus)
+      {
+        this.router.navigate(['/community']);
+      }
     }
   }
+  //used for user login
   validateUser(){
     if (this.username && this.password) {
       this.landingService.login(this.username, this.password).subscribe(data=>{
@@ -40,7 +49,7 @@ export class LandingComponent implements OnInit {
       });
     }
   }
-
+  //used for user creation
   createUser(){
     let user: User = new User();
     user.username = this.username;
@@ -48,7 +57,7 @@ export class LandingComponent implements OnInit {
     user.email = this.email;
     user.firstName = this.firstName;
     user.lastName = this.lastName;
-    this.landingService.register(user).subscribe(data=>{
+    this.landingService.register(user).subscribe(data=> {
       alert("Successfully registered! You may now log in.");
     });
     this.username = "";
@@ -58,4 +67,11 @@ export class LandingComponent implements OnInit {
     this.lastName = "";
     
   }
+
+  checkStatus():boolean
+  {
+    //make an HTTP request to check if the JWT is valid 
+    return true;
+  }
 }
+

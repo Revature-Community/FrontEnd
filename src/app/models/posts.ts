@@ -1,5 +1,7 @@
+import { Downvote } from "./downvote";
 import { Loc } from "./location";
 import { Locations } from "./locations";
+import { Upvote } from "./upvote";
 
 export class Posts {
     static find(arg0: Posts, arg1: boolean) {
@@ -12,9 +14,12 @@ export class Posts {
     public title: string,
     public content: string,
     public locationId: Locations, //change to location type later
-    public categoryType: string, 
+    public categoryType: string,
+    // public upvotes: Upvote[],
+    // public downvotes: Downvote[],
     public userId?: number,
     public username?: string
+
 )
 {}
 
