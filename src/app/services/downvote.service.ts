@@ -8,7 +8,7 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class DownvoteService {
 
-  baseUrl = 'http://localhost:8085/downvotes/';
+  baseUrl = 'http://localhost:8083/downvote/';
   constructor(private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
@@ -24,7 +24,7 @@ export class DownvoteService {
     )
   }
 
-  postDownvote(downvote:Object): Observable<any> {
+  addDownvote(downvote:Object): Observable<any> {
     return this.http.post<any>(this.baseUrl + 'add-downvote', downvote, this.httpOptions)
     .pipe(
       retry(1),

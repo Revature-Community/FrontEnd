@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Posts } from 'src/app/models/posts';
 import { PostsService } from 'src/app/posts.service';
 import { HttpClient } from '@angular/common/http';
+import { UpvotesService } from 'src/app/services/upvotes.service';
+import { DownvoteService } from 'src/app/services/downvote.service';
+import { Upvote } from 'src/app/models/upvote';
+import { Downvote } from 'src/app/models/downvote';
 
 @Component({
   selector: 'app-readpost',
@@ -12,7 +16,10 @@ export class ReadpostComponent implements OnInit {
   locationForPosts: number = 0;
   view: string = "all"
 
-  constructor(private http: HttpClient, private _posts: PostsService) {
+  constructor(private http: HttpClient, 
+    private _posts: PostsService,
+    private upvoteService: UpvotesService,
+    private downvoteService: DownvoteService) {
   }
 
 
@@ -121,7 +128,7 @@ export class ReadpostComponent implements OnInit {
       });
     }
     else {
-      console.log("Inside else filterByLocation: " + this.locationForPosts);
+      // console.log("Inside else filterByLocation: " + this.locationForPosts);
       this._posts.getPosts().subscribe(data => {
         this.postList = data;
       })
@@ -141,11 +148,40 @@ export class ReadpostComponent implements OnInit {
   handleShowPost() {
     this.showCreatePost = this.showCreatePost === 'false' ? 'true' : 'false';
   }
-  upvotePost():void {
-    console.log("Hello :)")
+
+  addUpvote(post: Posts):void {
+    console.log("Hello :)");
+    //I think this should get the userId...
+    let userId = parseInt(localStorage.getItem("userId"));
+    // console.log(userId); //This is correct
+    //This should give me the entire post object...
+    // console.log("post.id passed as a param = " + post.id) //And it does
+    //Instantitate a new upvote Object...
+    let newUpvote = new Upvote(0, post.id, parseInt(localStorage.getItem("userId")));
+    // newUpvote.id = 0;
+    // newUpvote.postId = post.id;
+    // newUpvote.userId = parseInt(localStorage.getItem("userId"));
+    console.log(newUpvote);
+    this.upvoteService.addUpvote(newUpvote).subscribe((data) => { },
+      () => { }
+    )
   }
 
-  downvotePost():void {
+  addDownvote(post: Posts):void {
     console.log("Goodbye :(")
+       //I think this should get the userId...
+       let userId = parseInt(localStorage.getItem("userId"));
+       // console.log(userId); //This is correct
+       //This should give me the entire post object...
+       // console.log("post.id passed as a param = " + post.id) //And it does
+       //Instantitate a new upvote Object...
+       let newDownvote = new Downvote(0, post.id, parseInt(localStorage.getItem("userId")));
+       // newUpvote.id = 0;
+       // newUpvote.postId = post.id;
+       // newUpvote.userId = parseInt(localStorage.getItem("userId"));
+       console.log(newDownvote);
+       this.downvoteService.addDownvote(newDownvote).subscribe((data) => { },
+         () => { }
+       )
   }
 }

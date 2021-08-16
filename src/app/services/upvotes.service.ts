@@ -2,12 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Upvote } from '../models/upvote';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UpvotesService {
-  baseUrl = 'http://localhost:8085/upvote/'
+  oldBaseUrl = 'http://localhost:8085/upvote/'
+  baseUrl = 'http://localhost:8083/upvote/'
   constructor(private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,8 +25,11 @@ export class UpvotesService {
     )
   }
 
-  addUpvote(upvote: Object): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'add-upvote', upvote, this.httpOptions)
+  addUpvote(upvote: Upvote): Observable<Upvote> {
+    console.log("I got to the addUpvote in the upvote service" + 
+      "\nupvote passed as a param = " + upvote + 
+      "\n.stringify = " + JSON.stringify(upvote));
+    return this.http.post<Upvote>(this.baseUrl + 'add-upvote', upvote, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandler)

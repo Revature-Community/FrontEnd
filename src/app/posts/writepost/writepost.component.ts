@@ -49,6 +49,7 @@ export class WritepostComponent implements OnInit {
   }
 
   userPost: Posts = {
+    id: 0,
     title: this.title,
     content: this.content,
     locationId: new Locations(0),
@@ -69,6 +70,7 @@ export class WritepostComponent implements OnInit {
       this.postError = "Please fill in empty fields";
     } else {
       this.userPost = {
+        id: 0,
         title: this.title,
         content: this.content,
         locationId: postLocation,

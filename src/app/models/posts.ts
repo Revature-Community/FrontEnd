@@ -7,6 +7,8 @@ export class Posts {
     }
     [x: string]: any;
     constructor(
+    //I'm going to add an id field to this class... So I need to add it to all instantiations of this class in every file...
+    public id: number,
     public title: string,
     public content: string,
     public locationId: Locations, //change to location type later
@@ -14,4 +16,6 @@ export class Posts {
     public userId?: number,
     public username?: string
 )
-{}}
+{}
+
+}
