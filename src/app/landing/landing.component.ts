@@ -24,7 +24,7 @@ export class LandingComponent implements OnInit {
     /*if the browser's local storage has a key named "isLoggedIn" and it's value is true, send them to the /community page
      *
     */
-    if (localStorage.getItem("isLoggedIn") == "true"){
+    if (localStorage.getItem("token") !== null){
       //add method to validate that the user is actually logged in and did not simply change the values in localstorage
       if(this.checkStatus)
       {
@@ -35,9 +35,13 @@ export class LandingComponent implements OnInit {
   //used for user login
   validateUser(){
     if (this.username && this.password) {
-      this.landingService.login(this.username, this.password).subscribe(data=>{
+      this.landingService.login2(this.username, this.password).subscribe(data=>{
         console.log('logging in', data)
         if (data) {
+
+          // Here you store the token
+          localStorage.setItem("token", data.token);
+
           localStorage.setItem("userId", data.id.toString(10));
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("username", data.username);
