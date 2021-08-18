@@ -56,6 +56,7 @@ export class WritepostComponent implements OnInit {
     content: this.content,
     locationId: new Locations(0),
     categoryType: this.categoryType,
+    voteCount: 0
   };
 
   submitPost() {
@@ -77,6 +78,7 @@ export class WritepostComponent implements OnInit {
         content: this.content,
         locationId: postLocation,
         categoryType: this.categoryType,
+        voteCount: 0,
         userId: userId,
         username: localStorage.getItem("username"),
         activeState: this.activeState,

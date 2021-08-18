@@ -16,8 +16,10 @@ export class Posts {
     public content: string,
     public locationId: Locations, //change to location type later
     public categoryType: string,
+    //Thses are unnecesarry
     // public upvotes: Upvote[],
     // public downvotes: Downvote[],
+    public voteCount: number,
     public userId?: number,
     public username?: string,
     public activeState?: boolean,

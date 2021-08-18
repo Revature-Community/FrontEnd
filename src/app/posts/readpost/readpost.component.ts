@@ -25,6 +25,7 @@ export class ReadpostComponent implements OnInit {
     private downvoteService: DownvoteService,
     private pinpost: PinpostService,
     private deletePostService: DeletepostService) {
+      
   }
 
 
@@ -40,12 +41,24 @@ export class ReadpostComponent implements OnInit {
   showCreatePost = 'false';
 
   ngOnInit(): void {
-    this._posts.getPosts().subscribe(data => {
+    this._posts.getPosts().subscribe(async data => {
       console.log('data', data);
       this.postList = data;
-      console.log(this.postList[0].pinStatus.pinStatus);
+
+      // this.getVotes();
+      // console.log(this.postList[0].pinStatus.pinStatus);
+      for(let post of this.postList)
+      {
+        this.upvoteService.getCount(post.id).subscribe(data => {
+          post.voteCount = data;
+        })
+        
+      }
+      
     })
-    this.getData();
+    // this.getData();
+
+
   }
 
   updatePosts(e) {

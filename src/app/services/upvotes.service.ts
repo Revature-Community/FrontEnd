@@ -8,7 +8,11 @@ import { Upvote } from '../models/upvote';
   providedIn: 'root'
 })
 export class UpvotesService {
-  oldBaseUrl = 'http://localhost:8085/upvote/'
+  getCount(id: number): Observable<number> {
+    return this.http.get<number>(this.baseUrl + "count/" + id)
+    
+  }
+
   baseUrl = 'http://localhost:8083/upvote/'
   constructor(private http: HttpClient) { }
   httpOptions = {
@@ -26,9 +30,9 @@ export class UpvotesService {
   }
 
   addUpvote(upvote: Upvote): Observable<Upvote> {
-    console.log("I got to the addUpvote in the upvote service" + 
-      "\nupvote passed as a param = " + upvote + 
-      "\n.stringify = " + JSON.stringify(upvote));
+    // console.log("I got to the addUpvote in the upvote service" + 
+    //   "\nupvote passed as a param = " + upvote + 
+    //   "\n.stringify = " + JSON.stringify(upvote));
     return this.http.post<Upvote>(this.baseUrl + 'add-upvote', upvote, this.httpOptions)
     .pipe(
       retry(1),

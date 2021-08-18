@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Downvote } from '../models/downvote';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,8 @@ export class DownvoteService {
     )
   }
 
-  addDownvote(downvote:Object): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'add-downvote', downvote, this.httpOptions)
+  addDownvote(downvote:Downvote): Observable<Downvote> {
+    return this.http.post<Downvote>(this.baseUrl + 'add-downvote', downvote, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandler)
