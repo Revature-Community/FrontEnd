@@ -15,7 +15,7 @@
             <a (click)="listEntertainmentPosts('Entertainment')" class="button">Entertainment</a>
             <a (click)="listFoodPosts('Food')" class="button">Food</a>
             <a (click)="listEventPosts('Events')" class="button">Events</a>
-
+            
         </div>
     </div>
     <div class="btn-group">
@@ -38,8 +38,22 @@
         <div *ngSwitchCase="'all'">
             <div *ngFor="let post of postList.slice().reverse()" style="color: black;">
                 <div class="card py-4 " style="padding-left: 12px;">
+                    <div *ngIf='role==="Admin" && post.pinStatus.pinStatus==="Default"'>
+                       
+                            <button (click)="pinPostLocation(post)" id="pinLocation">Pin by Location </button>
+                            <button (click)="pinPostCategory(post)" id="pinCategory">Pin by Category</button>
+                       
+                        
+                    </div>
+                     <div *ngIf='post.pinStatus.pinStatus==="Location"'>
+                        <p>Pinned by Location</p>
+                    </div> 
+                    <div *ngIf='post.pinStatus.pinStatus==="Category"'>
+                        <p>Pinned by Category</p>
+                    </div>
                     <div class="" style="text-align: left; height: 15rem; display: flex; flex-direction: column;">
                         <div style="border-bottom: 1px solid white;">
+                            
                             <div style="display:block; margin-left: -10px;">
                             <svg (click)="addUpvote(post)" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16" style="margin-bottom: 10px; margin-right: 3px; display:inline; position:absolute;">
                                 <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
@@ -57,6 +71,9 @@
                                 <p class="card-subtitle">{{post.categoryType}}</p>
                                 <p class="card-subtitle mb-2">{{post.locationId.city}}, {{post.locationId.state}}
                                 </p>
+                                <div (click)='deletePost(post)' *ngIf='role==="Admin"'>
+                                <button id="deleteButton" > Delete </button>
+                                </div>
                             </div>
 
                         </div>
@@ -76,7 +93,7 @@
 
         <div *ngSwitchCase="'Food'">
             <div *ngFor="let post of foodPosts" style="color: black;">
-                <div class="card p-4">
+                <div class="card py-4 " style="padding-left: 12px;">
                     <div class="" style="text-align: left;">
                         <div style="border-bottom: 1px solid white;">
                             <h3 class="card-title">{{post.title}}</h3>

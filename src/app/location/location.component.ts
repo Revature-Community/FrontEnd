@@ -89,6 +89,7 @@ export class LocationComponent implements OnInit {
 
   addLocation() {
     let location = new Loc(this.city, this.state);
+    console.log("Hello I am location "+location);
 
     this.locationService.saveLocation(location).subscribe((data: any) => {
       location = data;

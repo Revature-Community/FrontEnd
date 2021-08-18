@@ -14,6 +14,7 @@ import { Posts } from "src/app/models/posts";
 import { PostsService } from "src/app/posts.service";
 import { HttpClient } from "@angular/common/http";
 import { Locations } from "src/app/models/locations";
+import { Pinstatus } from "src/app/models/pinstatus";
 
 @Component({
   selector: "app-writepost",
@@ -32,7 +33,8 @@ export class WritepostComponent implements OnInit {
   addPosts(val: any) {
     this.newItemEvent.emit(val);
   }
-
+  pinStatus: Pinstatus = new Pinstatus(1,'Default');
+  activeState: boolean = true;
   locationForPosts: number = 0;
   title: string = "";
   content: string = "";
@@ -77,6 +79,10 @@ export class WritepostComponent implements OnInit {
         categoryType: this.categoryType,
         userId: userId,
         username: localStorage.getItem("username"),
+        activeState: this.activeState,
+        pinStatus: this.pinStatus
+        
+         
       };
       this._post.submitPost(this.userPost).subscribe((data) => {
         this.addPosts(true);

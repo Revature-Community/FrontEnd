@@ -1,6 +1,7 @@
 import { Downvote } from "./downvote";
 import { Loc } from "./location";
 import { Locations } from "./locations";
+import { Pinstatus } from "./pinstatus";
 import { Upvote } from "./upvote";
 
 export class Posts {
@@ -18,7 +19,10 @@ export class Posts {
     // public upvotes: Upvote[],
     // public downvotes: Downvote[],
     public userId?: number,
-    public username?: string
+    public username?: string,
+    public activeState?: boolean,
+    public pinstatus?: Pinstatus,
+    
 
 )
 {}

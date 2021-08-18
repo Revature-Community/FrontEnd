@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class RepliesService {
-  
-  baseUrl = 'http://localhost:8082/responses/';
+export class PinpostService {
+
+   baseUrl = 'http://localhost:8085/post/'
+
   constructor(private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
@@ -16,23 +18,22 @@ export class RepliesService {
     })
   }
 
-
-  getReplies(postId: Object): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "responses/"+ postId)
-
+  pinPostbyLocation(post:Object): Observable<any>{
+    return this.http.put<any>(this.baseUrl+'pinPost/Location',post, this.httpOptions )
     .pipe(
       retry(1),
       catchError(this.errorHandler)
     )
   }
 
-  postReply(reply:Object): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'submit-response', reply, this.httpOptions)
+   pinPostbyCategory(post:Object): Observable<any>{
+    return this.http.put<any>(this.baseUrl+'pinPost/Category',post, this.httpOptions )
     .pipe(
       retry(1),
       catchError(this.errorHandler)
     )
   }
+
 
   errorHandler(error:any) {
     let errorMessage = '';
@@ -42,22 +43,4 @@ export class RepliesService {
     }
     return throwError(errorMessage);
   }
-
-  updateReply(reply:object): Observable<any> { 
-    return this.http.put<any>(this.baseUrl+"update", reply)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandler)
-    )
-  }
-
-  deleteReply(id: number): Observable<any> {
-    return this.http.delete<any>(this.baseUrl + "delete/" + id)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandler)
-    )
-  }
-
-
 }

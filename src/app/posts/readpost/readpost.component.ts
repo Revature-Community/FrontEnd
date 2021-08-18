@@ -6,6 +6,8 @@ import { UpvotesService } from 'src/app/services/upvotes.service';
 import { DownvoteService } from 'src/app/services/downvote.service';
 import { Upvote } from 'src/app/models/upvote';
 import { Downvote } from 'src/app/models/downvote';
+import { PinpostService } from 'src/app/services/pinpost.service';
+import { DeletepostService } from 'src/app/services/deletepost.service';
 
 @Component({
   selector: 'app-readpost',
@@ -15,11 +17,14 @@ import { Downvote } from 'src/app/models/downvote';
 export class ReadpostComponent implements OnInit {
   locationForPosts: number = 0;
   view: string = "all"
+  role: string = localStorage.getItem('role');
 
   constructor(private http: HttpClient, 
     private _posts: PostsService,
     private upvoteService: UpvotesService,
-    private downvoteService: DownvoteService) {
+    private downvoteService: DownvoteService,
+    private pinpost: PinpostService,
+    private deletePostService: DeletepostService) {
   }
 
 
@@ -38,6 +43,7 @@ export class ReadpostComponent implements OnInit {
     this._posts.getPosts().subscribe(data => {
       console.log('data', data);
       this.postList = data;
+      console.log(this.postList[0].pinStatus.pinStatus);
     })
     this.getData();
   }
@@ -183,5 +189,19 @@ export class ReadpostComponent implements OnInit {
        this.downvoteService.addDownvote(newDownvote).subscribe((data) => { },
          () => { }
        )
+  }
+
+  pinPostLocation(post: Posts):void{
+    this.pinpost.pinPostbyLocation(post).subscribe((data)=>{},
+    () => {} )
+  }
+   pinPostCategory(post: Posts):void{
+    this.pinpost.pinPostbyCategory(post).subscribe((data)=>{},
+    () => {} )
+  }
+
+  deletePost(post: Posts):void{
+    this.deletePostService.deletePost(post).subscribe((data)=>{},
+    ()=>{})
   }
 }

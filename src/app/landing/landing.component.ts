@@ -41,12 +41,19 @@ export class LandingComponent implements OnInit {
 
           // Here you store the token
           localStorage.setItem("token", data.token);
-
+          
           localStorage.setItem("userId", data.id.toString(10));
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("username", data.username);
+          localStorage.setItem("role",data.role[0]);
           document.getElementById("close-modal").click();
-          this.router.navigate(['/community']);
+          
+              this.router.navigate(['/community']);
+          
+         
+            
+          
+        
         } else {
           this.loginError = 'Username and password does not match';
         }
