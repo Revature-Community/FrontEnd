@@ -81,10 +81,31 @@
   display: inline;
   position: absolute;
   margin-left: 24vw;
+  border-radius: 5px;
+  width: 150px;
+  height: 37px;
+  cursor: pointer;
 }
 
 #pinCategory {
   display: inline;
   position: relative;
-  margin-left: 16vw;
+  margin-left: 15vw;
+  border-radius: 5px;
+  width: 150px;
+  height: 37px;
+  cursor: pointer;
+}
+
+#deleteButton {
+  margin-bottom: 20px;
+  margin-left: 27vw;
+}
+
+#pinCategory:hover {
+  transform: scale(1.02, 1.02);
+}
+
+#pinLocation:hover {
+  transform: scale(1.02, 1.02);
 }

@@ -8,6 +8,7 @@ import { Upvote } from 'src/app/models/upvote';
 import { Downvote } from 'src/app/models/downvote';
 import { PinpostService } from 'src/app/services/pinpost.service';
 import { DeletepostService } from 'src/app/services/deletepost.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-readpost',
@@ -24,7 +25,8 @@ export class ReadpostComponent implements OnInit {
     private upvoteService: UpvotesService,
     private downvoteService: DownvoteService,
     private pinpost: PinpostService,
-    private deletePostService: DeletepostService) {
+    private deletePostService: DeletepostService,
+    private router:Router) {
       
   }
 
@@ -205,16 +207,30 @@ export class ReadpostComponent implements OnInit {
   }
 
   pinPostLocation(post: Posts):void{
-    this.pinpost.pinPostbyLocation(post).subscribe((data)=>{},
+    this.pinpost.pinPostbyLocation(post).subscribe((data)=>{
+      alert("Post Pinned by Location");
+      // this method is using the service to pin a post by location
+      // when a post gets pinned , we show the alert
+    },
     () => {} )
   }
    pinPostCategory(post: Posts):void{
-    this.pinpost.pinPostbyCategory(post).subscribe((data)=>{},
+    this.pinpost.pinPostbyCategory(post).subscribe((data)=>{
+      alert("Post Pinned by Category");
+      // this method is using the service to pin a post by category
+      // when a post gets pinned , we show the alert
+     
+    },
     () => {} )
   }
 
   deletePost(post: Posts):void{
-    this.deletePostService.deletePost(post).subscribe((data)=>{},
+    this.deletePostService.deletePost(post).subscribe((data)=>{
+      alert("Post Deleted!");
+     
+      // this method is using the service to delete a post
+      // when a post gets deleted , we show the alert
+    },
     ()=>{})
   }
 }
